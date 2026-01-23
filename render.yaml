@@ -1,19 +1,24 @@
 services:
   - type: web
-    name: cmr-placement-backend
+    name: cmr-placement-api
     runtime: node
     plan: free
-    buildCommand: "cd backend && npm install"
-    startCommand: "cd backend && npm start"
+    rootDir: backend
+    buildCommand: "npm install"
+    startCommand: "node server.js"
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 5000
 
-  - type: web
+  - type: static
     name: cmr-placement-frontend
     runtime: static
     plan: free
-    buildCommand: "cd frontend && npm install && npm run build"
-    staticPublishPath: frontend/build
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: build
+    rootDir: frontend
+    envVars:
+      - key: REACT_APP_API_BASE
+        value: https://cmr-placement-api.onrender.com/api
