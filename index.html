@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal - Main Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+
+        .links-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .link-card {
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .frontend-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .frontend-card:hover {
+            border-color: #667eea;
+        }
+
+        .backend-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .backend-card:hover {
+            border-color: #f5576c;
+        }
+
+        .card-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .card-description {
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .card-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .card-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+        }
+
+        .info-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .info-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .info-section ul {
+            list-style: none;
+            color: #666;
+        }
+
+        .info-section li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .info-section li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .links-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .link-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Job Portal</h1>
+        <p class="subtitle">Your Gateway to Opportunities</p>
+
+        <div class="links-container">
+            <a href="http://localhost:3000" class="link-card frontend-card">
+                <div class="card-icon">🎨</div>
+                <div class="card-title">Frontend</div>
+                <div class="card-description">Job Listings & Applications</div>
+                <span class="card-button">Access Frontend</span>
+            </a>
+
+            <a href="http://localhost:5000/api" class="link-card backend-card">
+                <div class="card-icon">⚙️</div>
+                <div class="card-title">Backend API</div>
+                <div class="card-description">API Documentation & Endpoints</div>
+                <span class="card-button">Access API</span>
+            </a>
+        </div>
+
+        <div class="info-section">
+            <h3>How to Access:</h3>
+            <ul>
+                <li><strong>Frontend:</strong> Job search interface and application management (Port 3000)</li>
+                <li><strong>Backend API:</strong> RESTful API endpoints for job data (Port 5000)</li>
+                <li><strong>Local Development:</strong> Ensure both frontend and backend servers are running</li>
+                <li><strong>Frontend Runs:</strong> <code>npm start</code> in the <code>frontend/</code> directory</li>
+                <li><strong>Backend Runs:</strong> <code>node server.js</code> in the <code>backend/</code> directory</li>
+            </ul>
+        </div>
+
+        <div class="info-section" style="margin-top: 20px; background: #fff3cd;">
+            <h3>⚠️ Prerequisites:</h3>
+            <ul>
+                <li>Node.js must be installed on your system</li>
+                <li>Run <code>npm install</code> in both <code>frontend/</code> and <code>backend/</code> directories</li>
+                <li>Backend must be running on port 5000</li>
+                <li>Frontend must be running on port 3000</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
