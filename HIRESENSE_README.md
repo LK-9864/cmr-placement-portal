@@ -1,4 +1,4 @@
-# 🎓 HireSense - AI-Powered Placement Portal
+# 🎓 HireSense - Matching Potential with Possibility
 
 ## Overview
 

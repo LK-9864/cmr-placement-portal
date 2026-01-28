@@ -72,7 +72,7 @@ function AuthPage({ onLogin }) {
       <div className="auth-box">
         <div className="auth-header">
           <h1>🚀 HireSense</h1>
-          <p>AI-Powered Placement Portal</p>
+          <p>Matching Potential with Possibility</p>
         </div>
 
         {/* User Type Selector */}

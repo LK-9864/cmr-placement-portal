@@ -480,7 +480,7 @@ Good luck with your capstone! 🎓
 
 ---
 
-*Project: HireSense - AI-Powered Placement Portal*  
+*Project: HireSense - Matching Potential with Possibility*  
 *Version: 2.0.0*  
 *Date: February 2025*  
 *Status: Complete & Ready ✅*

@@ -703,3 +703,181 @@
     padding: 10px;
   }
 }
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #666;
+}
+
+.modal-close:hover {
+  color: #000;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: #667eea;
+  margin-bottom: 20px;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-body p {
+  margin: 10px 0;
+  color: #333;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form-group input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+}
+
+.save-btn,
+.start-btn,
+.schedule-btn {
+  padding: 12px 20px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.save-btn:hover,
+.start-btn:hover,
+.schedule-btn:hover {
+  background: #764ba2;
+}
+
+.assessment-info {
+  background: #f0f0f0;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 15px 0;
+}
+
+.assessment-info p {
+  margin: 8px 0;
+}
+
+/* Student Actions */
+.student-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.view-details-btn,
+.edit-btn,
+.assessment-btn,
+.interview-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: bold;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.view-details-btn {
+  background: #667eea;
+  color: white;
+}
+
+.view-details-btn:hover {
+  background: #764ba2;
+  transform: translateY(-2px);
+}
+
+.edit-btn {
+  background: #20c997;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #0c8599;
+  transform: translateY(-2px);
+}
+
+.assessment-btn {
+  background: #ffc107;
+  color: #333;
+}
+
+.assessment-btn:hover {
+  background: #e0a800;
+  transform: translateY(-2px);
+}
+
+.interview-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.interview-btn:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+}

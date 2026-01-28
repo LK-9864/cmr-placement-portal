@@ -377,7 +377,7 @@ Now go forth and impress your professors! 💪
 
 ---
 
-*HireSense - AI-Powered Placement Portal*  
+*HireSense - Matching Potential with Possibility*  
 *Version 2.0.0 - Complete & Ready*  
 *Status: Production Ready ✅*  
 *Completion Date: February 2025*

@@ -4,11 +4,13 @@ import './AdminDashboard.css';
 function AdminDashboard({ admin, onLogout }) {
   const [activeTab, setActiveTab] = useState('overview');
   const [students, setStudents] = useState([
-    { id: 1, name: 'Rahul Kumar', email: 'rahul@cmr.edu.in', cgpa: 3.8, placed: true, company: 'TCS' },
-    { id: 2, name: 'Priya Singh', email: 'priya@cmr.edu.in', cgpa: 3.6, placed: true, company: 'AWS' },
-    { id: 3, name: 'Amit Patel', email: 'amit@cmr.edu.in', cgpa: 3.2, placed: false, company: null },
-    { id: 4, name: 'Sneha Gupta', email: 'sneha@cmr.edu.in', cgpa: 3.9, placed: true, company: 'Dell' },
-    { id: 5, name: 'Rajesh Sharma', email: 'rajesh@cmr.edu.in', cgpa: 3.1, placed: false, company: null }
+    { id: 1, name: 'Aditya', email: 'aditya@cmr.edu.in', rollNo: '22A01001', cgpa: 7.8, placed: true, company: 'TCS' },
+    { id: 2, name: 'Chethen', email: 'chethen@cmr.edu.in', rollNo: '22A01002', cgpa: 7.6, placed: true, company: 'AWS' },
+    { id: 3, name: 'Gobinath', email: 'gobinath@cmr.edu.in', rollNo: '22A01003', cgpa: 6.2, placed: false, company: null },
+    { id: 4, name: 'Harish', email: 'harish@cmr.edu.in', rollNo: '22A01004', cgpa: 7.9, placed: true, company: 'Dell' },
+    { id: 5, name: 'Lakshmikanth', email: 'lakshmikanth@cmr.edu.in', rollNo: '22A01005', cgpa: 6.1, placed: false, company: null },
+    { id: 6, name: 'Albi', email: 'albi@cmr.edu.in', rollNo: '22A01006', cgpa: 7.5, placed: true, company: 'HCL' },
+    { id: 7, name: 'Narendra', email: 'narendra@cmr.edu.in', rollNo: '22A01007', cgpa: 6.8, placed: false, company: null }
   ]);
   const [companies, setCompanies] = useState([
     { id: 1, name: 'TCS', recruiter: 'Arun Verma', jobsPosted: 5, applicants: 120, selected: 15 },
@@ -20,7 +22,7 @@ function AdminDashboard({ admin, onLogout }) {
   const [analytics, setAnalytics] = useState({
     totalStudents: 125,
     placedStudents: 68,
-    avgCgpa: 3.45,
+    avgCgpa: 7.0,
     activeCompanies: 5,
     totalJobsPosted: 23,
     totalApplications: 505,
@@ -34,12 +36,44 @@ function AdminDashboard({ admin, onLogout }) {
   ]);
   const [showPolicyForm, setShowPolicyForm] = useState(false);
   const [newPolicy, setNewPolicy] = useState({ title: '', value: '', type: 'Eligibility' });
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState(null);
 
   const handleAddPolicy = (e) => {
     e.preventDefault();
     setPolicies([...policies, { ...newPolicy, id: policies.length + 1 }]);
     setNewPolicy({ title: '', value: '', type: 'Eligibility' });
     setShowPolicyForm(false);
+  };
+
+  const openModal = (student, type) => {
+    setSelectedStudent(student);
+    setModalType(type);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedStudent(null);
+    setModalType(null);
+  };
+
+  const handleEditStudent = (e) => {
+    e.preventDefault();
+    setStudents(students.map(s => s.id === selectedStudent.id ? selectedStudent : s));
+    closeModal();
+    alert('Student details updated successfully!');
+  };
+
+  const handleTakeAssessment = () => {
+    alert(`Assessment started for ${selectedStudent.name}!`);
+    closeModal();
+  };
+
+  const handleScheduleInterview = () => {
+    alert(`Interview scheduled for ${selectedStudent.name}!`);
+    closeModal();
   };
 
   const placedCount = students.filter(s => s.placed).length;
@@ -170,6 +204,7 @@ function AdminDashboard({ admin, onLogout }) {
                 <div key={student.id} className="student-card">
                   <div className="student-info">
                     <h4>{student.name}</h4>
+                    <p><strong>Roll No:</strong> {student.rollNo}</p>
                     <p><strong>Email:</strong> {student.email}</p>
                     <p><strong>CGPA:</strong> {student.cgpa}</p>
                   </div>
@@ -192,7 +227,12 @@ function AdminDashboard({ admin, onLogout }) {
                       </div>
                     )}
                   </div>
-                  <button className="view-details-btn">View Profile</button>
+                  <div className="student-actions">
+                    <button className="view-details-btn" onClick={() => openModal(student, 'view')}>View Details</button>
+                    <button className="edit-btn" onClick={() => openModal(student, 'edit')}>Edit</button>
+                    <button className="assessment-btn" onClick={() => openModal(student, 'assessment')}>Take Assessment</button>
+                    <button className="interview-btn" onClick={() => openModal(student, 'interview')}>Schedule Interview</button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -361,6 +401,107 @@ function AdminDashboard({ admin, onLogout }) {
           </div>
         )}
       </div>
+
+      {/* Modal for Student Actions */}
+      {showModal && selectedStudent && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeModal}>✕</button>
+            
+            {modalType === 'view' && (
+              <div>
+                <h3>Student Details - {selectedStudent.name}</h3>
+                <div className="modal-body">
+                  <p><strong>Roll No:</strong> {selectedStudent.rollNo}</p>
+                  <p><strong>Name:</strong> {selectedStudent.name}</p>
+                  <p><strong>Email:</strong> {selectedStudent.email}</p>
+                  <p><strong>CGPA:</strong> {selectedStudent.cgpa}</p>
+                  <p><strong>Status:</strong> {selectedStudent.placed ? `Placed at ${selectedStudent.company}` : 'Not Placed'}</p>
+                </div>
+              </div>
+            )}
+
+            {modalType === 'edit' && (
+              <div>
+                <h3>Edit Student - {selectedStudent.name}</h3>
+                <form onSubmit={handleEditStudent} className="modal-form">
+                  <div className="form-group">
+                    <label>Name:</label>
+                    <input 
+                      type="text" 
+                      value={selectedStudent.name} 
+                      onChange={(e) => setSelectedStudent({...selectedStudent, name: e.target.value})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Email:</label>
+                    <input 
+                      type="email" 
+                      value={selectedStudent.email} 
+                      onChange={(e) => setSelectedStudent({...selectedStudent, email: e.target.value})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>CGPA:</label>
+                    <input 
+                      type="number" 
+                      step="0.1"
+                      value={selectedStudent.cgpa} 
+                      onChange={(e) => setSelectedStudent({...selectedStudent, cgpa: parseFloat(e.target.value)})}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Company:</label>
+                    <input 
+                      type="text" 
+                      value={selectedStudent.company || ''} 
+                      onChange={(e) => setSelectedStudent({...selectedStudent, company: e.target.value || null})}
+                    />
+                  </div>
+                  <button type="submit" className="save-btn">Save Changes</button>
+                </form>
+              </div>
+            )}
+
+            {modalType === 'assessment' && (
+              <div>
+                <h3>Assessment - {selectedStudent.name}</h3>
+                <div className="modal-body">
+                  <p>Assessment Details for {selectedStudent.name}</p>
+                  <div className="assessment-info">
+                    <p><strong>Subject:</strong> Technical Assessment</p>
+                    <p><strong>Duration:</strong> 60 minutes</p>
+                    <p><strong>Questions:</strong> 30</p>
+                    <p><strong>Passing Score:</strong> 60%</p>
+                  </div>
+                  <button className="start-btn" onClick={handleTakeAssessment}>Start Assessment</button>
+                </div>
+              </div>
+            )}
+
+            {modalType === 'interview' && (
+              <div>
+                <h3>Schedule Interview - {selectedStudent.name}</h3>
+                <div className="modal-body">
+                  <div className="form-group">
+                    <label>Interview Date:</label>
+                    <input type="date" />
+                  </div>
+                  <div className="form-group">
+                    <label>Interview Time:</label>
+                    <input type="time" />
+                  </div>
+                  <div className="form-group">
+                    <label>Interviewer:</label>
+                    <input type="text" placeholder="Enter interviewer name" />
+                  </div>
+                  <button className="schedule-btn" onClick={handleScheduleInterview}>Schedule Interview</button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
